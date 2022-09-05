@@ -1,16 +1,12 @@
 #/bin/bash
 
 sudo apt-get update -y
-sudo apt-get install -y ansible
+sudo apt-get install -y ansible git
 
+git clone https://github.com/vladskvortsov/ansible-2048-deploy.git
 
-echo '
-[servers]
+cd ansible-2048-deploy
 
-controller ansible_host=localhost
+sudo ansible-playbook playbook.yml -i /home/ubuntu/ansible-2048-deploy/hosts.ini -l controller -u root
 
-[all:vars]
-ansible_python_interpreter=/usr/bin/python3     
-' > /etc/home/ubuntu/hosts.ini
-
-sudo ansible-playbook playbook.yml -i /home/ubuntu/hosts.ini -l controller -u root
+#sudo scp -r -i /home/vlad/Завантаження/LightsailDefaultKey-eu-west-2.pem ubuntu@3.9.90.3:* /home/vlad/ansible-2048-deploy/

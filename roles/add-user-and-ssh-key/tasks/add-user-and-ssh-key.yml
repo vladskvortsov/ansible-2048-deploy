@@ -43,7 +43,7 @@
         state: enabled
         default: deny
 
-    - name: UFW -Start service
+    - name: UFW - Start service
       service:
        name: ufw
        state: started
