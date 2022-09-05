@@ -1,0 +1,9 @@
+---
+
+- hosts: all
+  connection: local
+  become: true
+  roles:
+   - add-user-and-ssh-key
+   - docker-install
+   - docker-2048-deploy
