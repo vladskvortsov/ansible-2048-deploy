@@ -6,4 +6,4 @@
         state: started
         auto_remove: true
         ports:
-          - "8080:80"
+          - "80:80"

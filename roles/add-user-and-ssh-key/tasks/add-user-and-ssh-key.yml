@@ -33,8 +33,17 @@
         rule: allow
         name: OpenSSH
 
+    - name: UFW - Allow http
+      community.general.ufw:
+        rule: allow
+        name: http
+
     - name: UFW - Enable and deny by default
       community.general.ufw:
         state: enabled
         default: deny
 
+    - name: UFW -Start service
+      service:
+       name: ufw
+       state: started
