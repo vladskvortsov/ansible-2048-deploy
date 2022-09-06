@@ -1,0 +1,10 @@
+---
+    - name: UFW start service
+      service:
+       name: ufw
+       state: started
+
+    - name: SSH restart service
+      service:
+       name: OpenSSH
+       state: restarted
