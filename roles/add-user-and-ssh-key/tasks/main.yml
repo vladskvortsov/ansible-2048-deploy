@@ -1,4 +1,4 @@
----
+--- 
     - name: Setup passwordless sudo
       lineinfile:
         path: /etc/sudoers
@@ -12,6 +12,7 @@
         name: "{{ created_username }}"
         state: present
         groups: sudo
+        shell: /bin/bash
         append: true
         create_home: true
 
@@ -19,14 +20,20 @@
       authorized_key:
        user: "{{ created_username }}"
        state: present
-       key: "{{ lookup('file', lookup('env','HOME') + '/.ssh/id_rsa.pub') }}"
+       key: "{{ lookup('file', lookup('env','HOME') + '/.ssh/authorized_keys') }}"
+
+#    - name: Set authorized key took from file
+#      authorized_key:
+#         user: "{{ created_username }}"
+#         state: present
+#         key: "{{ lookup('file', '/home/ubuntu/.ssh/authorized_keys') }}"
 
     - name: Disable password authentication for root
       lineinfile:
         path: /etc/ssh/sshd_config
         state: present
-        regexp: '^#?PermitRootLogin'
-        line: 'PermitRootLogin prohibit-password'
+        regexp: '^#?PermitRootLogin prohibit-password'
+        line: 'PermitRootLogin yes'
 
    
 #    - name: Allow all access to tcp port 80
@@ -41,7 +48,6 @@
         default: deny
       notify:
         - UFW start service
-
 
     - name: UFW - Allow SSH connections
       ufw:
