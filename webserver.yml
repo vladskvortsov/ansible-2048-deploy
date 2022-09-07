@@ -6,3 +6,4 @@
    - add-user-and-ssh-key
    - docker-install
    - docker-2048-deploy
+   - add-domain-name

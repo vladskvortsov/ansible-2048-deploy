@@ -13,3 +13,5 @@ sudo ansible-playbook playbook.yml -i /home/ubuntu/ansible-2048-deploy/hosts.ini
 
 #curl https://ipinfo.io/ip
 
+#sudo sed -i 's/::1 ip6-localhost ip6-loopback/::1 ip6-localhost ip6-loopback ip6-oldgood2048.ga/' /etc/hosts
+#sudo sed -i 's/127.0.0.1 localhost/127.0.0.1 localhost oldgood2048.ga/' /etc/hosts
