@@ -1,9 +1,0 @@
----    
-- name: Deploy docker-2048 container
-  docker_container:
-    image: vladskvortsov/docker-2048:latest
-    name: docker-2048
-    state: started
-    auto_remove: true
-    ports:
-      - "80:80"
