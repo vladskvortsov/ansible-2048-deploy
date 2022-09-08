@@ -3,14 +3,14 @@
      lineinfile:
         path: /etc/hosts
         state: present
-        regexp: '^#?127.0.1.1 localhost;'
-        line: '127.0.1.1 localhost "{{ domain_name }}";'
+        regexp: '^#?127.0.0.1 localhost;'
+        line: '127.0.0.1 localhost {{ domain_name }} www.{{ domain_name }};'
 
    - name: Add-domain-name-ip6
      lineinfile:
         path: /etc/hosts
         state: present
         regexp: '^#?::1 ip6-localhost ip6-loopback'
-        line: '::1 ip6-localhost ip6-loopback ip6-"{{domain_name}}"'
+        line: '::1 ip6-localhost ip6-loopback ip6-{{ domain_name }} ip6-www.{{ domain_name }}'
 
 
