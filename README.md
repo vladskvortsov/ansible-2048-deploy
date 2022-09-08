@@ -12,19 +12,29 @@ This Playbook deploys preconfigured docker image with webserver inside and setup
 ### What this Playbook do:
 
 -- Setup passwordless sudo
+
 -- Create a new user with sudo privileges
+
 -- Sets authorized key for new user
+
 -- Disable password authentication for root
+
 -- Setup firewall for ssh conections
+
 -- Install addition packages
+
 -- Install Docker
+
 -- Deploy light docker 2048 image based on alpine linux
+
 -- Add domain name to the target server config
 
 #### Top level files:
 
 **playbook.yml**
+
 Main playbook file, contains only links to playbooks for specific groups of servers (webservers, database servers etc.), in my case `webserver.yml`.
+
 ```s
 #main playbook
 ---
@@ -32,7 +42,9 @@ Main playbook file, contains only links to playbooks for specific groups of serv
 ```
 
 **webserver.yml**
+
 Contains configuration for webservers: list of target machines, roles and other.
+
 ```sh
 ---
 - hosts: all
@@ -47,6 +59,7 @@ Contains configuration for webservers: list of target machines, roles and other.
 > Note: `connection: local` required only if target is local ansible controller  machine, otherwise it should replaced.
 
 **hosts.ini**
+
 Reqired to store list of `all` target servers. In my case localhost only.
 ```sh
 [servers]
@@ -193,10 +206,14 @@ ansible_python_interpreter=/usr/bin/python3
 ### Variables
 
 **created_username**
+
 Put here [roles/add-user-and-ssh-key/vars/main.yml][user-var] name of sudo user you wish to add.
 
 **domain_name**
+
 Put here [roles/add-domain-name/vars/main.yml][domain-var] your hosted domain name.
+
+
 
 To run playbook clone this repository:
 
@@ -210,6 +227,7 @@ and run it specifying path to hosts.ini, target host `controller`, and user `ubu
 ```sh
 sudo ansible-playbook playbook.yml -i /home/ubuntu/ansible-2048-deploy/hosts.ini -l controller -u ubuntu
 ```
+
 
 When ansible ends, be free to access your image content from browser, using your domain name.
 
