@@ -11,23 +11,23 @@ This Playbook deploys preconfigured docker image with webserver inside and setup
 
 ### What this Playbook do:
 
-- Setup passwordless sudo
+-- Setup passwordless sudo
 
-- Create a new user with sudo privileges
+-- Create a new user with sudo privileges
 
-- Sets authorized key for new user
+-- Sets authorized key for new user
 
-- Disable password authentication for root
+-- Disable password authentication for root
 
-- Setup firewall for ssh conections
+-- Setup firewall for ssh conections
 
-- Install addition packages
+-- Install addition packages
 
-- Install Docker
+-- Install Docker
 
-- Deploy light docker 2048 image based on alpine linux
+-- Deploy light docker 2048 image based on alpine linux
 
-- Add domain name to the target server config
+-- Add domain name to the target server config
 
 #### Top level files:
 
