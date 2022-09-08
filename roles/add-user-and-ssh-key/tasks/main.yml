@@ -22,18 +22,12 @@
        state: present
        key: "{{ lookup('file', lookup('env','HOME') + '/.ssh/authorized_keys') }}"
 
-#    - name: Set authorized key took from file
-#      authorized_key:
-#         user: "{{ created_username }}"
-#         state: present
-#         key: "{{ lookup('file', '/home/ubuntu/.ssh/authorized_keys') }}"
-
     - name: Disable password authentication for root
       lineinfile:
         path: /etc/ssh/sshd_config
         state: present
-        regexp: '^#?PermitRootLogin prohibit-password'
-        line: 'PermitRootLogin yes'
+        regexp: '^#?#PermitRootLogin yes'
+        line: 'PermitRootLogin prohibit-password'
 
    
 #    - name: Allow all access to tcp port 80
