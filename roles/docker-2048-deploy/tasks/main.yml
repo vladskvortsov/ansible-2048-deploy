@@ -4,7 +4,6 @@
     image: vladskvortsov/docker-2048:latest
     name: docker-2048
     state: started
-    auto_remove: true
     ports:
       - "80:80"
 #     - "443:443"
