@@ -5,9 +5,9 @@ This Playbook deploys preconfigured docker image with webserver inside and setup
 ### Prerequisites
 
 - Ansible controller node
-- One or more Ansible hosts. User with sudo priveleges is required
+- One or more Ansible hosts(optionaly). User with sudo priveleges is required
 - Setuped SSH connection from controller to the host
-- Purchased or free domain name (`Adding server ip address to the domain properities is required`)
+- Purchased or free domain name (`Adding server global ip address to the domain properities is required`)
 
 ### What this Playbook do:
 
