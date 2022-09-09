@@ -3,8 +3,8 @@
      lineinfile:
         path: /etc/hosts
         state: present
-        regexp: '^#?127.0.0.1 localhost;'
-        line: '127.0.0.1 localhost {{ domain_name }} www.{{ domain_name }};'
+        regexp: '^#?127.0.0.1 localhost'
+        line: '127.0.0.1 localhost {{ domain_name }} www.{{ domain_name }}'
 
    - name: Add-domain-name-ip6
      lineinfile:

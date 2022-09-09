@@ -20,14 +20,20 @@
       authorized_key:
        user: "{{ created_username }}"
        state: present
-       key: "{{ lookup('file', lookup('env','HOME') + '/.ssh/authorized_keys') }}"
+       key: "{{ ssh_pub_key }}"
+
+#    - name: Set authorized key took from file
+#      authorized_key:
+#        user: "{{ created_username }}"
+#        state: present
+#        key: "{{ lookup('file', '~/ansible-2048-deploy/id_rsa.pub') }}"
 
     - name: Disable password authentication for root
       lineinfile:
         path: /etc/ssh/sshd_config
         state: present
         regexp: '^#?#PermitRootLogin yes'
-        line: 'PermitRootLogin prohibit-password'
+        line: ' PermitRootLogin prohibit-password'
 
    
 #    - name: Allow all access to tcp port 80

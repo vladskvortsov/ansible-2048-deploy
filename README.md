@@ -95,14 +95,21 @@ ansible_python_interpreter=/usr/bin/python3
       authorized_key:
        user: "{{ created_username }}"
        state: present
-       key: "{{ lookup('file', lookup('env','HOME') + '/.ssh/authorized_keys') }}"
+       key: "{{ ssh_pub_key }}"
+
+#    - name: Set authorized key took from file
+#      authorized_key:
+#        user: "{{ created_username }}"
+#        state: present
+#        key: "{{ lookup('file', '~/ansible-2048-deploy/id_rsa.pub') }}"
 
     - name: Disable password authentication for root
       lineinfile:
         path: /etc/ssh/sshd_config
         state: present
-        regexp: '^#?#PermitRootLogin prohibit-password'
-        line: 'PermitRootLogin yes'
+        regexp: '^#?#PermitRootLogin yes'
+        line: ' PermitRootLogin prohibit-password'
+
 
 #    - name: Allow all access to tcp port 80
 #      ufw:
@@ -123,6 +130,7 @@ ansible_python_interpreter=/usr/bin/python3
         name: OpenSSH
       notify:
         - SSH restart service
+
 ```
 
 **docker-install**
@@ -208,6 +216,21 @@ ansible_python_interpreter=/usr/bin/python3
 **created_username**
 
 Put here [roles/add-user-and-ssh-key/vars/main.yml][user-var] name of sudo user you wish to add.
+
+**ssh_pub_key**
+
+Put here [roles/add-user-and-ssh-key/vars/main.yml][user-var] content of ssh
+public key from your local machine. If you not already have one, you may generate key pair using:
+
+```sh
+ssh-keygen
+```
+
+ To show the content of your public key run:
+
+```sh
+cat ~/.ssh/id_rsa.pub
+```
 
 **domain_name**
 

@@ -13,6 +13,9 @@ sudo ansible-playbook playbook.yml -i /home/ubuntu/ansible-2048-deploy/hosts.ini
 
 #curl https://ipinfo.io/ip
 
+#cat ~/.ssh/id_rsa.pub
+
+
 
 
 #apk --update add certbot certbot-nginx nano curl
