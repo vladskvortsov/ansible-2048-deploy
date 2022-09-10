@@ -54,5 +54,5 @@
         rule: allow
         name: OpenSSH
       notify:
-        - SSH restart service
+        - SSH start service
 

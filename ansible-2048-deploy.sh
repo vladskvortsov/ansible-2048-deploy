@@ -9,12 +9,21 @@ cd ansible-2048-deploy
 
 sudo ansible-playbook playbook.yml -i /home/ubuntu/ansible-2048-deploy/hosts.ini -l controller -u ubuntu
 
-#sudo scp -r -i /home/vlad/Завантаження/LightsailDefaultKey-eu-west-2.pem ubuntu@3.9.90.3:* /home/vlad/ansible-2048-deploy/
+#sudo sudo scp -r -i /home/vlad/Завантаження/LightsailDefaultKey-eu-west-2.pem ubuntu@3.9.90.3:~/ansible-2048-deploy/* /home/vlad/ansible-2048-deploy/
 
 #curl https://ipinfo.io/ip
 
 #cat ~/.ssh/id_rsa.pub
+#cat ~/.ssh/authorized_keys
 
+
+
+
+
+
+
+
+#scp vlad@$SSH_CLIENT:~/.ssh/id_rsa.pub ~/.ssh/
 
 
 

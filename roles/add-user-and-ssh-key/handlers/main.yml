@@ -4,7 +4,7 @@
        name: ufw
        state: started
 
-    - name: SSH restart service
+    - name: SSH start service
       service:
        name: OpenSSH
-       state: restarted
+       state: started
