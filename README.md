@@ -1,39 +1,39 @@
-# Ansible Playbook for deploying docker version of 2048
+# Ansible Playbook for deploying the docker version of 2048
 
-This Playbook deploys preconfigured docker image with webserver inside and setup domain name for it. As example i use [docker-2048][git-2048] image.
+This Playbook deploys a preconfigured docker image with a webserver inside and sets up a domain name for it. As an example, I use [docker-2048][git-2048] image.
 
 ### Prerequisites
 
 - Ansible controller node
-- One or more Ansible hosts(optionaly). User with sudo priveleges is required
+- One or more Ansible hosts(optionally). A user with sudo privileges is required
 - Setuped SSH connection from controller to the host
-- Purchased or free domain name (`Adding server global ip address to the domain properities is required`)
+- Purchased or free domain name (`Adding server global IP address to the domain properties is required`)
 
-### What this Playbook do:
+### What this Playbook does:
 
--- Setup passwordless sudo
+-- Setups passwordless sudo
 
--- Create a new user with sudo privileges
+-- Creates a new user with sudo privileges
 
 -- Sets authorized key for new user
 
--- Disable password authentication for root
+-- Disables password authentication for root
 
--- Setup firewall for ssh conections
+-- Setups firewall for ssh connections
 
--- Install addition packages
+-- Installs additional packages
 
--- Install Docker
+-- Installs Docker
 
--- Deploy light docker 2048 image based on alpine linux
+-- Deploys light docker 2048 image based on Alpine Linux
 
--- Add domain name to the target server config
+-- Adds domain name to the target server config
 
-#### Top level files:
+#### Top-level files:
 
 **playbook.yml**
 
-Main playbook file, contains only links to playbooks for specific groups of servers (webservers, database servers etc.), in my case `webserver.yml`.
+The main playbook file, contains only links to playbooks for specific groups of servers (webservers, database servers, etc.), in my case `webserver.yml`.
 
 ```s
 #main playbook
@@ -43,7 +43,7 @@ Main playbook file, contains only links to playbooks for specific groups of serv
 
 **webserver.yml**
 
-Contains configuration for webservers: list of target machines, roles and other.
+Contains configuration for webservers: list of target machines, roles, and others.
 
 ```sh
 ---
@@ -56,11 +56,11 @@ Contains configuration for webservers: list of target machines, roles and other.
    - docker-2048-deploy
    - add-domain-name
 ```
-> Note: `connection: local` required only if target is local ansible controller  machine, otherwise it should replaced.
+> Note: `connection: local` is required only if the target is a local ansible controller  machine otherwise it should be replaced.
 
 **hosts.ini**
 
-Reqired to store list of `all` target servers. In my case localhost only.
+Required to store a list of `all` target servers. In my case localhost only.
 ```sh
 [servers]
 controller ansible_host=localhost
@@ -215,12 +215,12 @@ ansible_python_interpreter=/usr/bin/python3
 
 **created_username**
 
-Put here [roles/add-user-and-ssh-key/vars/main.yml][user-var] name of sudo user you wish to add.
+Put here [roles/add-user-and-ssh-key/vars/main.yml][user-var] name of the sudo user you wish to add.
 
 **ssh_pub_key**
 
-Put here [roles/add-user-and-ssh-key/vars/main.yml][user-var] content of ssh
-public key from your local machine. If you not already have one, you may generate key pair using:
+Put here [roles/add-user-and-ssh-key/vars/main.yml][user-var] content of the ssh
+public key from your local machine. If you don't already have one, you may generate a key pair using:
 
 ```sh
 ssh-keygen
@@ -238,21 +238,21 @@ Put here [roles/add-domain-name/vars/main.yml][domain-var] your hosted domain na
 
 
 
-To run playbook clone this repository:
+To run the playbook clone this repository:
 
 ```sh
  git clone https://github.com/vladskvortsov/ansible-2048-deploy.git
  cd ansible-2048-deploy
 ```
 
-and run it specifying path to hosts.ini, target host `controller`, and user `ubuntu`(should be replaced within yours ofcource):
+and run it specifying a path to hosts.ini, target host `controller`, and user `ubuntu`(should be replaced within yours, of course):
 
 ```sh
 sudo ansible-playbook playbook.yml -i /home/ubuntu/ansible-2048-deploy/hosts.ini -l controller -u ubuntu
 ```
 
 
-When ansible ends, be free to access your image content from browser, using your domain name.
+When ansible ends, be free to access your image content from the browser, using your domain name.
 
 [git-2048]: <https://github.com/vladskvortsov/docker-2048.git>
 [user-var]:<https://github.com/vladskvortsov/ansible-2048-deploy/blob/master/roles/add-user-and-ssh-key/vars/main.yml>
